@@ -1,4 +1,4 @@
-# Mobile Avatar Studio 0.1.0 installation and second-avatar test
+# Mobile Avatar Studio 0.1.1 installation and second-avatar test
 
 ## Requirements
 
@@ -12,7 +12,7 @@
 1. Back up or copy the target Unity project.
 2. Open `Window > Package Manager` in Unity.
 3. Choose `+ > Add package from tarball...`.
-4. Select `com.redjohn.mobile-avatar-studio-0.1.0.tgz`.
+4. Select `com.redjohn.mobile-avatar-studio-0.1.1.tgz`.
 5. Wait for script compilation and confirm the Console has no Mobile Avatar Studio errors.
 6. Open `Tools > Mobile Avatar Studio > Open`.
 

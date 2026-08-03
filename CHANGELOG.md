@@ -7,6 +7,16 @@
 - Includes the stable UV texture-sharing pass and behavior handling for excluded UV-split material slots.
 - This is a first public release, not a claim that every shader, avatar, or third-party build-system version is universally compatible.
 
+## 0.1.1 - Maintenance release
+
+- Promoted the previously unreleased component-restore, material sanitization, shader classification, behavior fallback, and Stage 8 reporting work into a versioned release.
+- Added the VCC/VPM listing, compatibility matrix, known-issues guide, package documentation URLs, and release-safety workflow.
+- Stage 7 component repair has separate Available and Removed/Restore tabs with a deterministic restore cache.
+- Generated materials are reset to a clean target-shader state while visible manual settings are preserved.
+- Stage 8 reports exact VRChat SDK validation messages instead of only the generic wrapper.
+- Emission maps remain available for manual polish while generated lit materials start with emission disabled.
+- Material names, shader classification, whitelist recommendations, capability-aware property transfer, and behavior fallback decisions are now explicit and reviewable.
+
 ## 0.1.0-preview.17
 
 - Stage 6 success no longer opens a modal dialog from the long-running editor callback, avoiding Unity's false "operation completed successfully" Console error.
@@ -82,22 +92,6 @@
 - Stage 6 now sanitizes generated materials referenced only by animation-driven material swaps, not only materials assigned in the prefab's default renderer state.
 - The final Android/iOS texture scan now follows the complete generated prefab dependency graph so textures used by animated material swaps receive the same reviewed mobile overrides.
 - Active Toon Standard properties, including intentional matcaps and retained emission maps, remain untouched while stale properties from the original PC shader are removed.
-
-## Unreleased
-
-- Stage 7 component repair now has separate Available and Removed/Restore tabs. Applied removals are hidden from the working list, cached once per avatar, and individually restorable to their original object with serialized settings and hierarchy references preserved.
-- Generated materials are now reset to a clean target-shader state, and Stage 6 strips hidden legacy shader properties while preserving visible/manual settings; this prevents unused Poiyomi textures from entering the mobile bundle or triggering SDK mip-streaming validation.
-- Stage 8 now reports the exact VRChat SDK validation messages instead of only the generic `Avatar validation failed` wrapper.
-- Generated lit materials now retain emission maps for manual polish but start with every emission strength/intensity control at zero; shader profiles without a strength control use a neutral black emission color.
-- Generated material filenames now preserve the clean source name and always match the Unity Material object name; stable identity suffixes are reserved for genuine duplicate names, and legacy generated assets are migrated in place on rebuild.
-- Replaced the broad render-queue-to-Additive rule with separate opaque, cutout, transparent-mesh, additive-particle, and multiply-particle classification.
-- Added an installed VRChat avatar shader whitelist picker for every material, searchable surface filters, safe bulk recommendations, confidence, and explanations.
-- Material approval signatures now include the selected target shader, and shader changes invalidate downstream texture, assembly, behavior, polish, and validation checkpoints.
-- Added capability-aware property transfer for Toon Standard, Standard Lite, Diffuse/Bumped, MatCap Lit, and mobile particle shader profiles.
-- Added persisted Stage 6 decisions for animated shader properties with no verified Toon Standard equivalent.
-- Added per-property affected-clip disclosure plus individual and bulk static mobile fallback controls.
-- Approved fallbacks now remove unsupported curves only from copied mobile clips and are recorded separately in the behavior report.
-- Behavior decisions are signature-gated and must be reviewed again if their binding or source-clip coverage changes.
 
 ## 0.1.0-preview.1
 
