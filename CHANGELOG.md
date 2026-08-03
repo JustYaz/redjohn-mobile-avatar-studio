@@ -4,6 +4,7 @@
 
 - Standardized the public product name as RedJohn Mobile Avatar Studio.
 - Added direct documentation links, corrected VCC wording, and re-enabled the release-safety workflow.
+- Removed the optional release-safety workflow after GitHub Actions became unavailable on the publisher account.
 
 ## 0.1.1 - Maintenance release
 
