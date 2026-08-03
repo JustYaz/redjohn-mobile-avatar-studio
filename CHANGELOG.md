@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.4 - Material-only default selection
+
+- A newly analyzed recipe now retains every original source mesh automatically when no candidates have been generated, regardless of default generation flags.
+- Stage 5 can proceed after material and texture work without manually changing every mesh row.
+
 ## 0.1.3 - Original-mesh conversion path
 
 - Material-only conversions no longer require mesh candidate generation. When reduction is not requested, the analyzed original source mesh is retained automatically.
