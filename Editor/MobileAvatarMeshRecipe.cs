@@ -16,7 +16,7 @@ namespace MobileAvatarStudio.Editor
         [SerializeField] private string generatedUtc;
         [SerializeField] private string backendName;
         [SerializeField] private string outputRoot;
-        [SerializeField] private string toolVersion = "0.1.1";
+        [SerializeField] private string toolVersion = "0.1.2";
         [SerializeField] private string unityVersion;
         [SerializeField] private string generatedMaterialPrefabPath;
         [SerializeField] private string materialPassUtc;

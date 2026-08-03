@@ -1,11 +1,9 @@
 # Changelog
 
-## 0.1.0 - First public release
+## 0.1.2 - Public documentation polish
 
-- First usable open-source release of the eight-stage Android/iOS mobile-avatar workflow.
-- Includes non-destructive mesh candidates, UV-tile splitting, reviewed mobile material and texture conversion, behavior remapping, manual-polish checkpoints, component repair, and official SDK size validation.
-- Includes the stable UV texture-sharing pass and behavior handling for excluded UV-split material slots.
-- This is a first public release, not a claim that every shader, avatar, or third-party build-system version is universally compatible.
+- Standardized the public product name as RedJohn Mobile Avatar Studio.
+- Added direct documentation links, corrected VCC wording, and re-enabled the release-safety workflow.
 
 ## 0.1.1 - Maintenance release
 
@@ -16,6 +14,13 @@
 - Stage 8 reports exact VRChat SDK validation messages instead of only the generic wrapper.
 - Emission maps remain available for manual polish while generated lit materials start with emission disabled.
 - Material names, shader classification, whitelist recommendations, capability-aware property transfer, and behavior fallback decisions are now explicit and reviewable.
+
+## 0.1.0 - First public release
+
+- First usable open-source release of the eight-stage Android/iOS mobile-avatar workflow.
+- Includes non-destructive mesh candidates, UV-tile splitting, reviewed mobile material and texture conversion, behavior remapping, manual-polish checkpoints, component repair, and official SDK size validation.
+- Includes the stable UV texture-sharing pass and behavior handling for excluded UV-split material slots.
+- This is a first public release, not a claim that every shader, avatar, or third-party build-system version is universally compatible.
 
 ## 0.1.0-preview.17
 

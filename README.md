@@ -2,11 +2,11 @@
 
 Mobile Avatar Studio is an editor-only Unity package for preparing VRChat avatars for Android and iOS mobile platforms. It creates a separate mobile counterpart while protecting the original PC avatar.
 
-The first public release was `0.1.0`; the current maintenance release is `0.1.1`. It is open source under the MIT license.
+The first public release was `0.1.0`; the current maintenance release is `0.1.2`. It is open source under the MIT license.
 
 ## Quick install
 
-For a normal user, download the `.tgz` from the [v0.1.1 release](https://github.com/JustYaz/redjohn-mobile-avatar-studio/releases/tag/v0.1.1) and add it through Unity Package Manager. For the latest development version, use this Git URL:
+For a normal user, download the `.tgz` from the [v0.1.2 release](https://github.com/JustYaz/redjohn-mobile-avatar-studio/releases/tag/v0.1.2) and add it through Unity Package Manager. For the latest development version, use this Git URL:
 
 `https://github.com/JustYaz/redjohn-mobile-avatar-studio.git`
 
@@ -40,7 +40,7 @@ The Studio does not upload avatars, modify the PC prefab, or silently delete sou
 
 The release is built and verified against Unity `2022.3` and the VRChat Avatars SDK baseline declared in `package.json` (`>=3.8.1`). VRCFury, Modular Avatar, NDMF, GoGoLoco, and other avatar build systems are optional project integrations: the Studio detects and validates systems installed in the user's project, but does not bundle them or promise identical behavior across every version. Test the exact versions used by your avatar.
 
-There is no hosted VCC repository listing in this first release. Install from the tarball or a Git URL. A future VCC listing can be added without changing the package itself.
+A VCC/VPM community listing is available for installing and updating Mobile Avatar Studio. Exact compatibility with optional avatar build systems depends on the versions installed in the user's project.
 
 ## Installation
 
@@ -48,7 +48,7 @@ There is no hosted VCC repository listing in this first release. Install from th
 
 1. Open `Window > Package Manager` in Unity.
 2. Choose `+ > Add package from tarball...`.
-3. Select `com.redjohn.mobile-avatar-studio-0.1.1.tgz`.
+3. Select `com.redjohn.mobile-avatar-studio-0.1.2.tgz`.
 4. Wait for Unity to finish compiling.
 5. Open `Tools > Mobile Avatar Studio > Open`.
 
@@ -66,7 +66,7 @@ Add this community listing URL in VCC under `Settings > Packages > Add Repositor
 
 `https://raw.githubusercontent.com/JustYaz/redjohn-mobile-avatar-studio/main/index.json`
 
-Then add **RedJohn Mobile Avatar Studio** to the project. The listing contains the current `0.1.1` release and preserves older versions for existing projects.
+Then add **RedJohn Mobile Avatar Studio** to the project. The listing contains the current `0.1.2` release and preserves older versions for existing projects.
 
 ## Basic workflow
 
@@ -152,7 +152,7 @@ This package contains only Mobile Avatar Studio source and documentation. It doe
 - **The avatar becomes bald or empty after a toggle:** return to Stage 6/7 and configure a proven mobile fallback for the excluded object. The Studio blocks unresolved fallbacks to avoid producing that state.
 - **Texture settings appear unapproved:** rescan Stage 4 after the final manual material pass, then approve the Android and iOS profiles.
 - **A PhysBone or particle warning remains:** inspect the exact component listed in Stage 7 and confirm it against the official SDK report. Warnings are not automatically safe.
-- **Unity reports invalid package dependencies:** verify that the tarball contains a top-level `package/` directory and that the package is installed from the current `0.1.1` archive.
+- **Unity reports invalid package dependencies:** verify that the tarball contains a top-level `package/` directory and that the package is installed from the current `0.1.2` archive.
 - **A build-system error names missing files:** install the avatar's required package (for example VRCFury or GoGoLoco) in the test project before running Stage 7.
 
 ## Testing and bug reports
@@ -174,6 +174,13 @@ Do not upload a private avatar, credentials, or generated workspace unless its l
 ## Contributing
 
 Read `CONTRIBUTING.md` before changing production code. Keep mobile compromises explicit, reviewable, reversible, and generic. Do not add avatar-specific paths or assumptions to the package.
+
+## Documentation
+
+- [Installation and testing](Documentation~/InstallationAndTest.md)
+- [Compatibility matrix](Documentation~/Compatibility.md)
+- [Known issues](Documentation~/Known-Issues.md)
+- [Product direction](Documentation~/ProductDirection.md)
 
 ## License
 
