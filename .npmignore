@@ -1,0 +1,6 @@
+Tests/
+Tests.meta
+Tests~/
+*.tmp
+*.log
+.DS_Store

@@ -1,0 +1,22 @@
+{
+  "name": "MobileAvatarStudio.Editor",
+  "rootNamespace": "MobileAvatarStudio.Editor",
+  "references": [
+    "MobileAvatarStudio.Runtime",
+    "VRC.SDK3A.Editor",
+    "VRC.SDKBase.Editor",
+    "VRC.SDKBase.Editor.BuildPipeline",
+    "VRC.SDKBase"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

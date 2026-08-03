@@ -1,0 +1,23 @@
+# Unity/editor-generated files
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+
+# Local generated avatar workspaces and reports
+Assets/MobileAvatarStudioGenerated/
+Library/MobileAvatarStudioReports/
+
+# Operating-system/editor noise
+.DS_Store
+Thumbs.db
+.vs/
+
