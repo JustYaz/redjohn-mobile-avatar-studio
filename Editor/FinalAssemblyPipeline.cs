@@ -59,9 +59,11 @@ namespace MobileAvatarStudio.Editor
             }
             var effectiveMeshes = UvTileSplitPipeline.GetEffectiveMeshChoices(recipe);
             if (effectiveMeshes.Count == 0 || effectiveMeshes.Any(choice =>
-                    choice.SelectedCandidate == null || !choice.SelectedCandidate.CanSelect))
+                    choice.SourceMesh == null ||
+                    (choice.Candidates.Count > 0 &&
+                     (choice.SelectedCandidate == null || !choice.SelectedCandidate.CanSelect))))
             {
-                reason = "Every renderer must have a selectable generated mesh candidate.";
+                reason = "Every retained renderer must have a source mesh or a selectable generated candidate.";
                 return false;
             }
             if (recipe.MaterialChoices.Count == 0 || recipe.MaterialChoices.Any(choice =>

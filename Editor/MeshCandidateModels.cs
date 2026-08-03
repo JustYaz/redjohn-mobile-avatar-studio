@@ -165,8 +165,12 @@ namespace MobileAvatarStudio.Editor
         public Mesh SelectedMesh => SelectedCandidate?.Mesh != null ? SelectedCandidate.Mesh : sourceMesh;
         public int SelectedTriangleCount => SelectedCandidate?.Mesh != null ? SelectedCandidate.TriangleCount : sourceTriangleCount;
         public string CurrentSelectionId => SelectedCandidate?.Id ?? "source";
-        public bool IsCurrentSelectionApproved => selectionApproved &&
-                                                  string.Equals(approvedSelectionId, CurrentSelectionId, StringComparison.Ordinal);
+        public bool IsCurrentSelectionApproved =>
+            // If reduction was not requested, retaining the analyzed source mesh is the
+            // explicit, non-destructive default. This allows material-only conversions
+            // without forcing every avatar through mesh candidate generation.
+            (Candidates.Count == 0 && !GenerateCandidates && SourceMesh != null) ||
+            (selectionApproved && string.Equals(approvedSelectionId, CurrentSelectionId, StringComparison.Ordinal));
 
         public void ApproveCurrentSelection()
         {

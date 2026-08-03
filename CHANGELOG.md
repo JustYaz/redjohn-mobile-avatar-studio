@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.3 - Original-mesh conversion path
+
+- Material-only conversions no longer require mesh candidate generation. When reduction is not requested, the analyzed original source mesh is retained automatically.
+- Stage 5 still blocks missing source meshes and invalid generated candidates.
+
 ## 0.1.2 - Public documentation polish
 
 - Standardized the public product name as RedJohn Mobile Avatar Studio.

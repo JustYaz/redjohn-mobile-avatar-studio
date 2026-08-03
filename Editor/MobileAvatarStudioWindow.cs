@@ -2310,7 +2310,11 @@ namespace MobileAvatarStudio.Editor
 
             if (choice.Candidates.Count == 0)
             {
-                EditorGUILayout.HelpBox("Candidates have not been generated for this renderer. The source mesh is shown.", MessageType.Info);
+                EditorGUILayout.HelpBox(
+                    choice.GenerateCandidates
+                        ? "Mesh candidates are requested but have not been generated yet. Generate them, or uncheck this renderer to keep the original source mesh."
+                        : "Mesh generation is skipped for this renderer. The analyzed original source mesh will be retained; material-only conversion can continue without reduction.",
+                    MessageType.Info);
                 return;
             }
 
