@@ -4,7 +4,7 @@ Mobile Avatar Studio is an editor-only Unity package for preparing VRChat avatar
 
 The first public release was `0.1.0`; the current maintenance release is `0.1.4`. It is open source under the MIT license.
 
-**[Add RedJohn Mobile Avatar Studio to VCC](vcc://vpm/addRepo?url=https%3A%2F%2Fraw.githubusercontent.com%2FJustYaz%2Fredjohn-mobile-avatar-studio%2Fmain%2Findex.json)**
+**[Add RedJohn Mobile Avatar Studio to VCC](https://justyaz.github.io/redjohn-mobile-avatar-studio/)**
 
 If the button does not open VCC, copy this repository URL into `VCC > Settings > Packages > Add Repository`:
 
