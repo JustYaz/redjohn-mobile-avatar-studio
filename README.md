@@ -8,7 +8,7 @@ The first public release was `0.1.0`; the current maintenance release is `0.1.5`
 
 If the button does not open VCC, copy this repository URL into `VCC > Settings > Packages > Add Repository`:
 
-`https://raw.githubusercontent.com/JustYaz/redjohn-mobile-avatar-studio/main/index.json`
+`https://justyaz.github.io/redjohn-mobile-avatar-studio/index.json`
 
 ## Quick install
 
@@ -70,7 +70,7 @@ The Git URL follows the `main` branch. Use the tagged release tarball when you n
 
 Add this community listing URL in VCC under `Settings > Packages > Add Repository`:
 
-`https://raw.githubusercontent.com/JustYaz/redjohn-mobile-avatar-studio/main/index.json`
+`https://justyaz.github.io/redjohn-mobile-avatar-studio/index.json`
 
 Then add **RedJohn Mobile Avatar Studio** to the project. The listing contains the current `0.1.5` release and preserves older versions for existing projects.
 
