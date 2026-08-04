@@ -12,7 +12,7 @@ If the button does not open VCC, copy this repository URL into `VCC > Settings >
 
 ## Quick install
 
-For a normal user, download `com.redjohn.mobile-avatar-studio-0.1.5.tgz` from the [v0.1.5 release](https://github.com/JustYaz/redjohn-mobile-avatar-studio/releases/tag/v0.1.5) and add it through Unity Package Manager. For the latest development version, use this Git URL:
+For a normal user, download `com.redjohn.mobile-avatar-studio-0.1.5.zip` from the [v0.1.5 release](https://github.com/JustYaz/redjohn-mobile-avatar-studio/releases/tag/v0.1.5) and add it through Unity Package Manager. For the latest development version, use this Git URL:
 
 `https://github.com/JustYaz/redjohn-mobile-avatar-studio.git`
 
@@ -53,8 +53,8 @@ A VCC/VPM community listing is available for installing and updating Mobile Avat
 ### Tarball installation
 
 1. Open `Window > Package Manager` in Unity.
-2. Choose `+ > Add package from tarball...`.
-3. Select `com.redjohn.mobile-avatar-studio-0.1.5.tgz`.
+2. Choose `+ > Add package from disk...`.
+3. Select the extracted package folder containing `package.json`, or use the VCC listing below.
 4. Wait for Unity to finish compiling.
 5. Open `Tools > Mobile Avatar Studio > Open`.
 
@@ -64,7 +64,7 @@ Open `Window > Package Manager`, choose `+ > Add package from git URL...`, and e
 
 `https://github.com/JustYaz/redjohn-mobile-avatar-studio.git`
 
-The Git URL follows the `main` branch. Use the tagged release tarball when you need a reproducible version.
+The Git URL follows the `main` branch. Use the tagged release ZIP when you need a reproducible version.
 
 ### VCC/VPM installation
 
@@ -158,7 +158,7 @@ This package contains only Mobile Avatar Studio source and documentation. It doe
 - **The avatar becomes bald or empty after a toggle:** return to Stage 6/7 and configure a proven mobile fallback for the excluded object. The Studio blocks unresolved fallbacks to avoid producing that state.
 - **Texture settings appear unapproved:** rescan Stage 4 after the final manual material pass, then approve the Android and iOS profiles.
 - **A PhysBone or particle warning remains:** inspect the exact component listed in Stage 7 and confirm it against the official SDK report. Warnings are not automatically safe.
-- **Unity reports invalid package dependencies:** verify that the tarball contains a top-level `package/` directory and that the package is installed from the current `0.1.5` archive.
+- **Unity reports invalid package dependencies:** verify that the package ZIP contains `package.json` at its root and that the package is installed from the current `0.1.5` archive.
 - **A build-system error names missing files:** install the avatar's required package (for example VRCFury or GoGoLoco) in the test project before running Stage 7.
 
 ## Testing and bug reports

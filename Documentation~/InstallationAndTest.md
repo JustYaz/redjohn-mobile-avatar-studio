@@ -11,8 +11,8 @@
 
 1. Back up or copy the target Unity project.
 2. Open `Window > Package Manager` in Unity.
-3. Choose `+ > Add package from tarball...`.
-4. Select `com.redjohn.mobile-avatar-studio-0.1.4.tgz`.
+3. Choose `+ > Add package from disk...`.
+4. Select the extracted package folder containing `package.json`, or install through the VCC listing.
 5. Wait for script compilation and confirm the Console has no Mobile Avatar Studio errors.
 6. Open `Tools > Mobile Avatar Studio > Open`.
 
