@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
 
@@ -21,6 +22,7 @@ namespace MobileAvatarStudio.Editor
         public int RemappedUvTileBindings { get; set; }
         public int RemovedContentBindings { get; set; }
         public int FallbackContentBindings { get; set; }
+        public int QuarantinedBrokenControllerTransitions { get; set; }
         public bool ValidationPassed { get; set; }
         public List<string> Warnings { get; } = new List<string>();
     }
@@ -270,7 +272,10 @@ namespace MobileAvatarStudio.Editor
                     {
                         destination = BuildDestinationPath(root, sourcePath, source);
                         MeshAnalysisUtility.EnsureAssetFolder(Path.GetDirectoryName(destination)?.Replace('\\', '/'));
-                        if (!AssetDatabase.CopyAsset(sourcePath, destination))
+                        var copied = extension == ".controller"
+                            ? CopyControllerWithoutOrphanedTransitions(sourcePath, destination, result)
+                            : AssetDatabase.CopyAsset(sourcePath, destination);
+                        if (!copied)
                             throw new InvalidOperationException("Unity failed to copy behavior asset: " + sourcePath);
                         copiedPaths[sourcePath] = destination;
                     }
@@ -1133,6 +1138,8 @@ namespace MobileAvatarStudio.Editor
             text.AppendLine("Combined prefab: " + recipe.CombinedQuestPrefabPath);
             text.AppendLine("Source unchanged: " + string.Equals(sourceHashBefore, sourceHashAfter, StringComparison.OrdinalIgnoreCase));
             text.AppendLine($"Copied controllers: {result.CopiedControllers}; clips: {result.CopiedClips}; menus/parameters: {result.CopiedMenusAndParameters}");
+            if (result.QuarantinedBrokenControllerTransitions > 0)
+                text.AppendLine($"Quarantined broken orphaned controller transitions: {result.QuarantinedBrokenControllerTransitions}");
             text.AppendLine($"Remapped shader-property bindings: {result.RemappedFloatBindings}; " +
                             $"unsupported bindings removed from mobile copies: {result.RemovedUnsupportedShaderBindings}; " +
                             $"material keyframes: {result.RemappedMaterialKeys}");
@@ -1149,6 +1156,75 @@ namespace MobileAvatarStudio.Editor
             foreach (var warning in result.Warnings) text.AppendLine("- " + warning);
             File.WriteAllText(result.ReportPath, text.ToString(), Encoding.UTF8);
             AssetDatabase.ImportAsset(result.ReportPath, ImportAssetOptions.ForceUpdate);
+        }
+
+        private static bool CopyControllerWithoutOrphanedTransitions(string sourcePath, string destinationPath,
+            BehaviorConversionResult result)
+        {
+            var projectRoot = Directory.GetParent(Application.dataPath)?.FullName;
+            if (string.IsNullOrEmpty(projectRoot)) return false;
+            var sourceAbsolute = Path.Combine(projectRoot, sourcePath.Replace('/', Path.DirectorySeparatorChar));
+            var destinationAbsolute = Path.Combine(projectRoot, destinationPath.Replace('/', Path.DirectorySeparatorChar));
+            if (!File.Exists(sourceAbsolute)) return false;
+
+            try
+            {
+                var yaml = File.ReadAllText(sourceAbsolute);
+                var sanitized = RemoveUnreferencedBrokenStateTransitions(yaml, out var removed);
+                MeshAnalysisUtility.EnsureAssetFolder(Path.GetDirectoryName(destinationPath)?.Replace('\\', '/'));
+                File.Copy(sourceAbsolute, destinationAbsolute, true);
+                if (removed > 0)
+                {
+                    File.WriteAllText(destinationAbsolute, sanitized, new UTF8Encoding(false));
+                    result.QuarantinedBrokenControllerTransitions += removed;
+                }
+
+                AssetDatabase.ImportAsset(destinationPath, ImportAssetOptions.ForceSynchronousImport);
+                return true;
+            }
+            catch (Exception exception)
+            {
+                Debug.LogWarning("Mobile Avatar Studio could not sanitize controller copy; falling back to Unity copy: " +
+                                 exception.Message);
+                return AssetDatabase.CopyAsset(sourcePath, destinationPath);
+            }
+        }
+
+        private static string RemoveUnreferencedBrokenStateTransitions(string yaml, out int removed)
+        {
+            removed = 0;
+            if (string.IsNullOrEmpty(yaml)) return yaml;
+
+            var stateIds = new HashSet<string>(StringComparer.Ordinal);
+            foreach (Match match in Regex.Matches(yaml, "^--- !u!1102 &(-?\\d+)\\s*$",
+                         RegexOptions.Multiline))
+                stateIds.Add(match.Groups[1].Value);
+
+            var transitions = Regex.Matches(yaml, "^--- !u!1101 &(-?\\d+)\\s*$.*?(?=^--- !u!|\\z)",
+                RegexOptions.Multiline | RegexOptions.Singleline);
+            var ranges = new List<Tuple<int, int>>();
+            foreach (Match transition in transitions)
+            {
+                var destination = Regex.Match(transition.Value,
+                    "m_DstState:\\s*\\{fileID:\\s*(-?\\d+)\\}");
+                if (!destination.Success || destination.Groups[1].Value == "0" ||
+                    stateIds.Contains(destination.Groups[1].Value)) continue;
+
+                // Only remove an orphan object. If a live state still references this transition,
+                // leave it intact so a real behavior problem is surfaced instead of silently changing it.
+                var transitionId = transition.Groups[1].Value;
+                var withoutBlock = yaml.Remove(transition.Index, transition.Length);
+                if (Regex.IsMatch(withoutBlock, "\\{fileID:\\s*" + Regex.Escape(transitionId) + "\\s*\\}"))
+                    continue;
+                ranges.Add(Tuple.Create(transition.Index, transition.Length));
+            }
+
+            if (ranges.Count == 0) return yaml;
+            var builder = new StringBuilder(yaml);
+            for (var index = ranges.Count - 1; index >= 0; index--)
+                builder.Remove(ranges[index].Item1, ranges[index].Item2);
+            removed = ranges.Count;
+            return builder.ToString();
         }
     }
 }

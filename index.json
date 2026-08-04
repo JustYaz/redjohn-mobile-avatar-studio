@@ -6,13 +6,13 @@
   "packages": {
     "com.redjohn.mobile-avatar-studio": {
       "versions": {
-        "0.1.4": {
+        "0.1.5": {
           "name": "com.redjohn.mobile-avatar-studio",
           "displayName": "RedJohn Mobile Avatar Studio",
-          "version": "0.1.4",
+          "version": "0.1.5",
           "unity": "2022.3",
           "description": "Non-destructive, behavior-aware tooling for preparing VRChat avatars for Android and iOS mobile platforms.",
-          "url": "https://github.com/JustYaz/redjohn-mobile-avatar-studio/releases/download/v0.1.4/com.redjohn.mobile-avatar-studio-0.1.4.tgz",
+          "url": "https://github.com/JustYaz/redjohn-mobile-avatar-studio/releases/download/v0.1.5/com.redjohn.mobile-avatar-studio-0.1.5.tgz",
           "license": "MIT",
           "documentationUrl": "https://github.com/JustYaz/redjohn-mobile-avatar-studio#readme",
           "changelogUrl": "https://github.com/JustYaz/redjohn-mobile-avatar-studio/blob/main/CHANGELOG.md",

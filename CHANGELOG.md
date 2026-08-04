@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.5 - VCC archive repair
+
+- Published a clean npm/VPM package archive so VCC can extract and install the package reliably.
+- Isolated behavior copies quarantine unreferenced controller transitions that point at missing local states.
+
 ## 0.1.4 - Material-only default selection
 
 - A newly analyzed recipe now retains every original source mesh automatically when no candidates have been generated, regardless of default generation flags.
