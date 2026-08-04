@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.6 - Stage 5 behavior-validation fix
+
+- Stage 5 now defers behavior-contract count validation until Stage 6 has copied and remapped the behavior graph.
+- Expected pre-Stage-6 differences in material properties, object toggles, animation bindings, and clips are reported as deferred warnings instead of incorrectly blocking the combined prefab build.
+- Structural validation and the authoritative post-remap contract checks remain in place.
+
 ## 0.1.5 - VCC archive repair
 
 - Published a clean npm/VPM package archive so VCC can extract and install the package reliably.

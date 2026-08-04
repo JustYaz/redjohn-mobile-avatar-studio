@@ -492,6 +492,12 @@ namespace MobileAvatarStudio.Editor
                 errors.Add("Direct expression-parameter layout changed: " + parameterLayoutReason);
 
             var finalContract = AvatarBehaviorContractAnalyzer.Capture(saved);
+            // Stage 5 intentionally builds the clean mesh/material prefab before Stage 6
+            // copies and remaps the behavior graph. Do not treat the temporary prefab's
+            // reduced behavior counts as structural corruption; Stage 6 is the contract
+            // boundary where these counts become authoritative.
+            var behaviorContractDeferred = string.IsNullOrEmpty(recipe.BehaviorPassUtc) ||
+                                           !recipe.BehaviorAppliedToCombined;
             foreach (var sourceCategory in recipe.SourceBehaviorContract.Categories)
             {
                 var finalCount = finalContract.Count(sourceCategory.Name);
@@ -521,7 +527,10 @@ namespace MobileAvatarStudio.Editor
                 var deferredBuildSystemParameters =
                     string.Equals(sourceCategory.Name, "Parameters", StringComparison.Ordinal) &&
                     recipe.SourceBehaviorContract.DetectedBuildSystems.Count > 0;
-                if (finalCount != sourceCategory.EntryCount && deferredBuildSystemParameters)
+                if (finalCount != sourceCategory.EntryCount && behaviorContractDeferred)
+                    result.Warnings.Add($"Behavior contract count deferred until Stage 6: " +
+                                        $"{sourceCategory.Name} {sourceCategory.EntryCount} -> {finalCount}.");
+                else if (finalCount != sourceCategory.EntryCount && deferredBuildSystemParameters)
                     result.Warnings.Add($"Build-system parameter dependency totals are deferred to resolved validation: " +
                                         $"{sourceCategory.EntryCount} -> {finalCount}. " +
                                         "The descriptor's ordered parameter layout was preserved.");
