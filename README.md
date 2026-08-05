@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="Documentation~/Branding/readme-banner-1800x600.png" alt="Mobile Avatar Studio — M.A.S" width="100%">
+</p>
+
 # RedJohn Mobile Avatar Studio
 
 Mobile Avatar Studio is an editor-only Unity package for preparing VRChat avatars for Android and iOS mobile platforms. It creates a separate mobile counterpart while protecting the original PC avatar.
