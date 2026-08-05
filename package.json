@@ -5,9 +5,9 @@
   "unity": "2022.3",
   "description": "Non-destructive, behavior-aware tooling for preparing VRChat avatars for Android and iOS mobile platforms.",
   "license": "MIT",
-  "documentationUrl": "https://github.com/JustYaz/redjohn-mobile-avatar-studio#readme",
-  "changelogUrl": "https://github.com/JustYaz/redjohn-mobile-avatar-studio/blob/main/CHANGELOG.md",
-  "licensesUrl": "https://github.com/JustYaz/redjohn-mobile-avatar-studio/blob/main/LICENSE",
+  "documentationUrl": "https://github.com/JustYaz/mobile-avatar-studio#readme",
+  "changelogUrl": "https://github.com/JustYaz/mobile-avatar-studio/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/JustYaz/mobile-avatar-studio/blob/main/LICENSE",
   "author": {
     "name": "RedJohn"
   },
