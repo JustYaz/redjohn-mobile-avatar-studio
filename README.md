@@ -6,7 +6,7 @@
 
 Mobile Avatar Studio is an editor-only Unity package for preparing VRChat avatars for Android and iOS mobile platforms. It creates a separate mobile counterpart while protecting the original PC avatar.
 
-The first public release was `0.1.0`; the current maintenance release is `0.1.6`. It is open source under the MIT license.
+This is the official `0.1.0` release of M.A.S. Mobile Avatar Studio. It is open source under the MIT license.
 
 **[Add M.A.S. Mobile Avatar Studio to VCC](https://justyaz.github.io/mobile-avatar-studio/)**
 
@@ -16,7 +16,7 @@ If the button does not open VCC, copy this repository URL into `VCC > Settings >
 
 ## Quick install
 
-For a normal user, download `com.redjohn.mobile-avatar-studio-0.1.6.zip` from the [v0.1.6 release](https://github.com/JustYaz/mobile-avatar-studio/releases/tag/v0.1.6) and add it through Unity Package Manager. For the latest development version, use this Git URL:
+For a normal user, choose the `com.redjohn.mobile-avatar-studio-0.1.0.zip`, `.tgz`, or `.unitypackage` asset from the [v0.1.0 release](https://github.com/JustYaz/mobile-avatar-studio/releases/tag/v0.1.0). Use the ZIP or TGZ with Unity Package Manager/VCC; use the UnityPackage for a direct Unity import. For the latest development version, use this Git URL:
 
 `https://github.com/JustYaz/mobile-avatar-studio.git`
 
@@ -76,7 +76,7 @@ Add this community listing URL in VCC under `Settings > Packages > Add Repositor
 
 `https://justyaz.github.io/mobile-avatar-studio/index.json`
 
-Then add **M.A.S. Mobile Avatar Studio** to the project. The listing contains the current release and preserves older versions for existing projects.
+Then add **M.A.S. Mobile Avatar Studio** to the project. The listing contains the official `0.1.0` release.
 
 ## Basic workflow
 
@@ -162,7 +162,7 @@ This package contains only Mobile Avatar Studio source and documentation. It doe
 - **The avatar becomes bald or empty after a toggle:** return to Stage 6/7 and configure a proven mobile fallback for the excluded object. The Studio blocks unresolved fallbacks to avoid producing that state.
 - **Texture settings appear unapproved:** rescan Stage 4 after the final manual material pass, then approve the Android and iOS profiles.
 - **A PhysBone or particle warning remains:** inspect the exact component listed in Stage 7 and confirm it against the official SDK report. Warnings are not automatically safe.
-- **Unity reports invalid package dependencies:** verify that the package ZIP contains `package.json` at its root and that the package is installed from the current `0.1.6` archive.
+- **Unity reports invalid package dependencies:** verify that the package ZIP or TGZ contains `package.json` at its root and that the package is installed from the official `0.1.0` release.
 - **A build-system error names missing files:** install the avatar's required package (for example VRCFury or GoGoLoco) in the test project before running Stage 7.
 
 ## Testing and bug reports
