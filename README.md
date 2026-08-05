@@ -20,6 +20,10 @@ For a normal user, choose the `com.redjohn.mobile-avatar-studio-0.1.0.zip`, `.tg
 
 `https://github.com/JustYaz/mobile-avatar-studio.git`
 
+## Video tutorial
+
+Follow the [M.A.S. setup tutorial on YouTube](https://youtu.be/dObcczyokkk) for a guided walkthrough of the installation and workflow.
+
 ## What this tool does
 
 The Studio guides you through the difficult parts of making a mobile version of an existing VRChat avatar:
