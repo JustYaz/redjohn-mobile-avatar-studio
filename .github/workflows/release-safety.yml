@@ -1,0 +1,54 @@
+name: Release safety
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Validate package structure and metadata
+        shell: pwsh
+        run: |
+          $package = Get-Content -Raw package.json | ConvertFrom-Json
+          if ($package.name -ne 'com.redjohn.mobile-avatar-studio') { throw 'Unexpected package name.' }
+          if ($package.displayName -ne 'M.A.S. Mobile Avatar Studio') { throw 'Unexpected public display name.' }
+          if ($package.version -notmatch '^\d+\.\d+\.\d+$') { throw 'Package version must be stable SemVer.' }
+          foreach ($file in @('README.md','LICENSE','CHANGELOG.md','CONTRIBUTING.md','SECURITY.md','index.json')) {
+            if (-not (Test-Path $file)) { throw "Missing required file: $file" }
+          }
+          if (-not (Test-Path 'Tests/Editor')) { throw 'Editor tests are missing.' }
+          if (-not (Get-ChildItem 'Tests/Editor' -Filter '*.cs' -File)) { throw 'No editor test source was found.' }
+          $listing = Get-Content -Raw index.json | ConvertFrom-Json
+          $listed = $listing.packages.'com.redjohn.mobile-avatar-studio'.versions.($package.version)
+          if (-not $listed) { throw "VPM listing does not contain version $($package.version)." }
+          if ($listed.displayName -ne $package.displayName) { throw 'VPM display name does not match package metadata.' }
+          $tracked = git ls-files
+          $forbidden = $tracked | Where-Object { $_ -match '(^|/)(Library|Temp|Assets/MobileAvatarStudioGenerated|Builds)(/|$)|(^|/)(credentials|secrets)(/|\.)' }
+          if ($forbidden) { throw "Generated or private files are tracked: $($forbidden -join ', ')" }
+          $restricted = $tracked | Where-Object { $_ -match '(?i)(Mesh.?Baker|AutoLOD.*\.dll|Poiyomi.*\.unitypackage)' }
+          if ($restricted) { throw "Restricted third-party files are tracked: $($restricted -join ', ')" }
+          if ($env:GITHUB_REF -like 'refs/tags/v*') {
+            $tag = $env:GITHUB_REF -replace '^refs/tags/v',''
+            if ($tag -ne $package.version) { throw "Tag v$tag does not match package version $($package.version)." }
+          }
+
+      - name: Verify VPM archive layout
+        shell: bash
+        run: |
+          mkdir -p /tmp/mobile-avatar-package/package
+          cp -a . /tmp/mobile-avatar-package/package
+          rm -rf /tmp/mobile-avatar-package/package/.git
+          tar -czf /tmp/mobile-avatar-studio.tgz -C /tmp/mobile-avatar-package package
+          tar -tzf /tmp/mobile-avatar-studio.tgz | grep -q '^package/package.json$'
+          tar -tzf /tmp/mobile-avatar-studio.tgz | grep -q '^package/README.md$'

@@ -3,19 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>M.A.S. Mobile Avatar Studio — Add to VCC</title>
+  <title>M.A.S. Mobile Avatar Studio - Add to VCC</title>
   <style>
     :root { color-scheme: dark; }
     body { font: 16px/1.5 system-ui, sans-serif; max-width: 680px; margin: 4rem auto; padding: 0 1.25rem; background: #0d1117; color: #e6edf3; }
-    a.button { display: inline-block; padding: .75rem 1.1rem; border-radius: .5rem; background: #2f81f7; color: white; text-decoration: none; font-weight: 700; }
+    .brand-icon { display: block; width: 128px; height: 128px; object-fit: contain; margin: 0 auto 1.25rem; }
+    .tagline { color: #b9c0cc; }
+    a.button { display: inline-block; padding: .75rem 1.1rem; border-radius: .5rem; background: #a51f35; color: white; text-decoration: none; font-weight: 700; }
+    a.button:hover { background: #c52a45; }
+    a { color: #ff6b7f; }
     code { word-break: break-all; }
   </style>
 </head>
 <body>
+  <img class="brand-icon" src="Documentation~/Branding/mas-icon-1024.png" alt="M.A.S. logo">
   <h1>M.A.S. Mobile Avatar Studio</h1>
+  <p class="tagline">Free and open-source VRChat mobile-avatar tooling.</p>
   <p>Add the VCC repository to VRChat Creator Companion without downloading the package manually.</p>
   <p><a class="button" href="vcc://vpm/addRepo?url=https%3A%2F%2Fjustyaz.github.io%2Fmobile-avatar-studio%2Findex.json">Add to VCC</a></p>
-  <p>If VCC does not open, copy this repository URL into <strong>VCC → Settings → Packages → Add Repository</strong>:</p>
+  <p><a href="https://github.com/JustYaz/mobile-avatar-studio">View the project on GitHub</a></p>
+  <p>Current package: <strong>0.1.0</strong></p>
+  <p>If VCC does not open, copy this repository URL into <strong>VCC &gt; Settings &gt; Packages &gt; Add Repository</strong>:</p>
   <p><code>https://justyaz.github.io/mobile-avatar-studio/index.json</code></p>
 </body>
 </html>

@@ -54,13 +54,27 @@ A VCC/VPM community listing is available for installing and updating Mobile Avat
 
 ## Installation
 
-### Tarball installation
+### TGZ installation
 
 1. Open `Window > Package Manager` in Unity.
-2. Choose `+ > Add package from disk...`.
-3. Select the extracted package folder containing `package.json`, or use the VCC listing below.
+2. Choose `+ > Add package from tarball...`.
+3. Select `com.redjohn.mobile-avatar-studio-0.1.0.tgz`.
 4. Wait for Unity to finish compiling.
 5. Open `Tools > Mobile Avatar Studio > Open`.
+
+### ZIP installation
+
+1. Extract `com.redjohn.mobile-avatar-studio-0.1.0.zip`.
+2. Open `Window > Package Manager` in Unity.
+3. Choose `+ > Add package from disk...`.
+4. Select the extracted folder's `package.json`.
+5. Wait for Unity to finish compiling.
+
+### UnityPackage installation
+
+1. In Unity, choose `Assets > Import Package > Custom Package...`.
+2. Select `mas-mobile-avatar-studio-0.1.0.unitypackage`.
+3. Import the package files and wait for Unity to finish compiling.
 
 ### Git installation
 

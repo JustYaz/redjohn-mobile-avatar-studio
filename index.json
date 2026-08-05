@@ -8,7 +8,7 @@
       "versions": {
         "0.1.0": {
           "name": "com.redjohn.mobile-avatar-studio",
-          "displayName": "RedJohn Mobile Avatar Studio",
+          "displayName": "M.A.S. Mobile Avatar Studio",
           "version": "0.1.0",
           "unity": "2022.3",
           "description": "Non-destructive, behavior-aware tooling for preparing VRChat avatars for Android and iOS mobile platforms.",
